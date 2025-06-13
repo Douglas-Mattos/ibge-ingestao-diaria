@@ -10,7 +10,8 @@ def coletar_estados_ibge():
     resposta = requests.get(url)
     dados = resposta.json()
     df = pd.DataFrame(dados)
-    return df[['id', 'sigla', 'nome']]
+    df['data_coleta'] = date.today().isoformat()
+    return df[['id', 'sigla', 'nome', 'data_coleta']] 
 
 # 🔁 Etapa 2: Salvar CSV local
 df = coletar_estados_ibge()
